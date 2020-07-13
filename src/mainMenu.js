@@ -15,8 +15,7 @@ export default class mainMenu extends Component {
       <div>
         <Accordion>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon  />}
-            
+            expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
@@ -27,8 +26,8 @@ export default class mainMenu extends Component {
             {this.props.item.name}
           </AccordionSummary>
 
-          {this.props.item.items.map((item) => (
-            <div style={{ textIndent: "50px" }}>
+          {this.props.item.items.map((item, i) => (
+            <div key={i} style={{ textIndent: "50px" }}>
               {!item.subMenus ? (
                 <Radio
                   checked={this.state.selectedValue === item.name}
@@ -44,8 +43,12 @@ export default class mainMenu extends Component {
               <b>{"   Fiyat: " + item.price}</b>
 
               {item.subMenus
-                ? item.subMenus.map((subMenu) => (
-                    <SubMenu item={subMenu} subList={this.props.subList} />
+                ? item.subMenus.map((subMenu, j) => (
+                    <SubMenu
+                      key={j}
+                      item={subMenu}
+                      subList={this.props.subList}
+                    />
                   ))
                 : ""}
             </div>

@@ -31,7 +31,7 @@ export default class subMenu extends Component {
                       onChange={this.handleChange}
                       value={subMenuItem.name}
                       name="radio-button-demo"
-                      inputProps={{ "aria-label": "A" }}
+                    
                     />
 
                     <img
