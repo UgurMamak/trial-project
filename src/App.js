@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-
 import MainMenu from "./mainMenu";
-
-import Deneme from  "./Deneme"
-import Deneme2 from "./Deneme2"
 export default class App extends Component {
   state = {
     menus: [],
@@ -17,29 +13,22 @@ export default class App extends Component {
   componentDidMount() {
     this.getMenus();
   }
-
   render() {
+    const data = [];
     const menuList = [];
-    const subList=[];
-
-    
+    const subList = [];
 
     this.state.menus.map((items) =>
-      items.key === "main"
-        ? items.items.map((item) =>
-            menuList.push(<MainMenu key={item.name} image={item.image} item={item} />)
-          )
-        : subList.push(items)
+      items.key === "main" ? menuList.push(items) : subList.push(items)
     );
-  
+    console.log("menulist", menuList);
+    console.log("sublist", subList);
+    menuList.map((items) =>
+      items.items.map((item, i) =>
+        data.push(<MainMenu subList={subList} key={i} item={item} />)
+      )
+    );
 
-    return (
-      <div>
-        {/*menuList*/}
-        {/*console.log(this.state.menus)*/}
-        
-        <Deneme2/>
-      </div>
-    );
+    return <div>{data}</div>;
   }
 }
